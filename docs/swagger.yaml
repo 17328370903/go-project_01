@@ -1,0 +1,65 @@
+definitions:
+  response.ResponseJson:
+    properties:
+      code:
+        type: integer
+      data: {}
+      msg:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: 描述
+  title: 后台管理
+  version: 1.0 版本
+paths:
+  /user:
+    get:
+      description: 产品列表
+      parameters:
+      - default: 1
+        description: 当前页码
+        in: query
+        name: page
+        required: true
+        type: integer
+      - default: 10
+        description: 分页数量
+        in: query
+        name: page_size
+        required: true
+        type: integer
+      responses: {}
+      summary: 产品列表
+      tags:
+      - 产品管理
+    post:
+      consumes:
+      - application/json
+      description: 添加产品
+      parameters:
+      - description: 产品名称
+        in: body
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: 产品价格
+        in: body
+        name: price
+        required: true
+        schema:
+          type: number
+      responses:
+        "200":
+          description: 获取成功
+          headers:
+            token:
+              description: token
+              type: string
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: 添加产品
+      tags:
+      - 产品管理
+swagger: "2.0"
